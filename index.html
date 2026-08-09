@@ -1,42 +1,65 @@
 <!doctype html>
 <html lang="fr">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#061329"><title>Roulette de grossesse</title>
-<link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="style.css">
-</head><body>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#061329">
+<title>Roulette de grossesse</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
 <main class="app">
-<header><div class="logo">◌</div><h1>• ROULETTE DE GROSSESSE •</h1><button id="help">?</button></header>
-<div class="tabs"><button class="tab active" data-mode="ddr">DDR<small>dernières règles</small></button><button class="tab" data-mode="ddg">DDG / TERME ÉCHO<small>début de grossesse</small></button></div>
+<header>
+  <div class="logo">◌</div>
+  <h1>• ROULETTE DE GROSSESSE •</h1>
+  <button id="help" aria-label="Aide">?</button>
+</header>
+<div class="tabs">
+  <button class="tab active" data-mode="ddr">DDR<small>dernières règles</small></button>
+  <button class="tab" data-mode="ddg">DDG / TERME ÉCHO<small>début de grossesse</small></button>
+</div>
 <section class="datebox">
- <div><label id="mainLabel">DDR</label><input id="mainDate" type="date"></div>
- <i></i><div><label>DPA</label><output id="dpa">—</output></div>
+  <div><label id="mainLabel">DDR</label><input id="mainDate" type="date"></div>
+  <i></i>
+  <div><label>DPA</label><output id="dpa">—</output></div>
 </section>
 <p class="sub" id="method">Datation • 41 SA depuis la DDR</p>
 
 <section class="wheelbox">
- <div id="wheel" class="wheel">
-  <div class="ticks"></div><div class="progress" id="progress"></div>
-  <div class="pointer">▼</div>
-  <div class="milestone m0"><b>0 SA</b><span>DDR</span></div>
-  <div class="milestone m2"><b>2 SA</b><span>DDG</span></div>
-  <div class="milestone m11"><b>11 SA</b><span>T1</span></div>
-  <div class="milestone m14"><b>13+6</b><span>Fin T1</span></div>
-  <div class="milestone m22"><b>22 SA</b><span>T2</span></div>
-  <div class="milestone m32"><b>32 SA</b><span>T3</span></div>
-  <div class="milestone m41"><b>41 SA</b><span>DPA</span></div>
-  <div class="hub">
-    <em id="hubTitle">TERME AUJOURD’HUI</em><strong id="term">—</strong><span id="selectedDate">—</span>
-    <hr><em>DPA</em><b id="dpa2">—</b><small id="remaining">—</small>
+  <div id="wheel" class="wheel">
+    <div class="rotor" id="rotor">
+      <div class="ticks"></div>
+      <div class="progress"></div>
+    </div>
+    <div class="pointer">▼</div>
+    <div class="milestone m0"><b>0 SA</b><span>DDR</span></div>
+    <div class="milestone m2"><b>2 SA</b><span>DDG</span></div>
+    <div class="milestone m11"><b>11 SA</b><span>T1</span></div>
+    <div class="milestone m14"><b>13+6</b><span>Fin T1</span></div>
+    <div class="milestone m22"><b>22 SA</b><span>T2</span></div>
+    <div class="milestone m32"><b>32 SA</b><span>T3</span></div>
+    <div class="milestone m41"><b>41 SA</b><span>DPA</span></div>
+    <div class="hub">
+      <em id="hubTitle">TERME AUJOURD’HUI</em>
+      <strong id="term">—</strong>
+      <div id="dragDelta" class="drag-delta">± 0 j</div>
+      <span id="selectedDate">—</span>
+      <hr>
+      <em>DPA</em>
+      <b id="dpa2">—</b>
+      <small id="remaining">—</small>
+    </div>
   </div>
- </div>
- <p class="hint">Glisse la roulette au doigt ou à la souris</p>
- <button id="todayBtn" class="ghost">Revenir à aujourd’hui</button>
+  <p class="hint">Glisse doucement la roulette • 1 cran = 1 jour</p>
+  <button id="todayBtn" class="ghost">Revenir à aujourd’hui</button>
 </section>
 
 <section class="panel">
-<h2>Date → terme</h2><div class="convert"><input id="targetDate" type="date"><span>→</span><output id="targetTerm">—</output></div>
-<h2>Terme → date</h2><div class="convert terminput"><input id="weeks" type="number" min="0" max="45" value="32"><span>SA</span><input id="days" type="number" min="0" max="6" value="0"><span>j →</span><output id="termDate">—</output></div>
+<h2>Date → terme</h2>
+<div class="convert"><input id="targetDate" type="date"><span>→</span><output id="targetTerm">—</output></div>
+<h2>Terme → date</h2>
+<div class="convert terminput"><input id="weeks" type="number" min="0" max="45" value="32"><span>SA</span><input id="days" type="number" min="0" max="6" value="0"><span>j →</span><output id="termDate">—</output></div>
 </section>
 
 <section class="panel">
@@ -46,13 +69,23 @@
 <section class="panel">
 <h2>Calcul rapide</h2>
 <div class="quick">
-<button data-w="12">12 SA</button><button data-w="22">22 SA</button><button data-w="28">28 SA</button><button data-w="32">32 SA</button><button data-w="36">36 SA</button><button data-w="37">37 SA</button><button data-w="39">39 SA</button><button data-w="41">41 SA</button>
-</div></section>
+<button data-w="12">12 SA</button><button data-w="22">22 SA</button><button data-w="28">28 SA</button><button data-w="32">32 SA</button>
+<button data-w="36">36 SA</button><button data-w="37">37 SA</button><button data-w="39">39 SA</button><button data-w="41">41 SA</button>
+</div>
+</section>
 
 <button id="copy" class="copy"><strong>COPIER POUR COMPTE RENDU</strong><span id="copyText">—</span></button>
 <button id="share" class="share">Partager le résumé</button>
-
 <footer>Aucune donnée patiente transmise • Calcul local sur l’appareil</footer>
 </main>
-<dialog id="dlg"><form method="dialog"><h3>Roulette de grossesse</h3><p>Application de calcul obstétrical. La DPA est calculée à 41 SA depuis la DDR. La DDG correspond à DDR + 14 jours.</p><p>Les repères échographiques affichés sont des aides de calendrier et ne remplacent pas les recommandations ou protocoles applicables.</p><button>Fermer</button></form></dialog>
-<script src="app.js"></script></body></html>
+
+<dialog id="dlg"><form method="dialog">
+<h3>Roulette de grossesse</h3>
+<p>La DPA est calculée à 41 SA depuis la DDR. La DDG correspond à DDR + 14 jours.</p>
+<p>La roulette avance au jour près. Pendant le geste, l’écart en jours est affiché au centre.</p>
+<button>Fermer</button>
+</form></dialog>
+
+<script src="app.js"></script>
+</body>
+</html>

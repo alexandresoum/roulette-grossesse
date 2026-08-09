@@ -1,0 +1,17 @@
+{
+  "name": "Roulette de grossesse",
+  "short_name": "Roulette",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#061329",
+  "theme_color": "#061329",
+  "lang": "fr",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

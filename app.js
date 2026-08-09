@@ -1,5 +1,5 @@
 const DAY=86400000,$=s=>document.querySelector(s);
-let mode="ddr",selected=null,dragging=false,lastRawAngle=0,unwrappedAngle=0,dragBaseDate=null,dragDays=0,rotorBase=0,rafPending=false;
+let mode="ddg",selected=null,dragging=false,lastRawAngle=0,unwrappedAngle=0,dragBaseDate=null,dragDays=0,rotorBase=0,rafPending=false;
 const DEG_PER_DAY=5,mainDate=$("#mainDate"),targetDate=$("#targetDate"),wheel=$("#wheel"),rotor=$("#rotor"),dragDelta=$("#dragDelta");
 function parse(v){if(!v)return null;let [y,m,d]=v.split("-").map(Number);return new Date(y,m-1,d,12)}
 function iso(d){return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}

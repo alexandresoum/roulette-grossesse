@@ -34,7 +34,7 @@ h1{text-align:center;font-size:clamp(16px,4vw,23px);letter-spacing:.13em;font-we
 .drag-delta.positive{color:#ff93cf}.drag-delta.negative{color:#7dbaff}
 .milestone{position:absolute;z-index:9;width:84px;min-height:54px;transform:translate(-50%,-50%);font-size:clamp(8px,1.8vw,12px);pointer-events:auto;border:0;background:transparent;color:#fff;padding:6px;border-radius:14px;touch-action:manipulation}
 .milestone b,.milestone span{display:block}.milestone b{color:var(--pink);font-size:clamp(11px,2.4vw,17px)}
-.m0{left:50%;top:9%}.m2{left:71%;top:14%}.m11{left:89%;top:32%}.m14{left:90%;top:63%}.m22{left:74%;top:87%}.m22 b{color:var(--violet)}.m32{left:49%;top:92%}.m32 b{color:var(--blue)}.m41{left:11%;top:51%}
+.m0{left:50%;top:9%}.m2{left:71%;top:14%}.m11{left:89%;top:32%}.m12{left:93%;top:43%}.m14{left:90%;top:63%}.m22{left:74%;top:87%}.m22 b{color:var(--violet)}.m32{left:49%;top:92%}.m32 b{color:var(--blue)}.m41{left:11%;top:51%}
 .hint{font-size:12px;color:#8795b3;margin:10px 0 10px}
 .ghost,.share{border:1px solid #405983;border-radius:13px;background:#0a1a35;color:#dce4f8;padding:10px 15px}
 .panel{margin:22px 0}.panel h2{font-size:18px;margin:14px 0 9px}

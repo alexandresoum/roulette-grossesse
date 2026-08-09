@@ -55,5 +55,5 @@ wheel.addEventListener("pointerdown",e=>{if(e.target.closest(".wheel-link"))retu
 wheel.addEventListener("pointermove",e=>{if(!dragging)return;e.preventDefault();let a=angle(e),delta=a-lastRawAngle;if(delta>180)delta-=360;if(delta<-180)delta+=360;unwrappedAngle+=delta;lastRawAngle=a;if(!rafPending){rafPending=true;requestAnimationFrame(applyDragFrame)}},{passive:false});
 function finishDrag(e){if(!dragging)return;dragging=false;wheel.classList.remove("dragging");dragDelta.classList.remove("positive","negative");if(e&&wheel.hasPointerCapture?.(e.pointerId)){try{wheel.releasePointerCapture(e.pointerId)}catch{}}}
 wheel.addEventListener("pointerup",finishDrag);wheel.addEventListener("pointercancel",finishDrag);wheel.addEventListener("lostpointercapture",()=>finishDrag());
-let today=new Date();today.setHours(12,0,0,0);mainDate.value=iso(add(today,-171));targetDate.value=iso(add(today,30));render();
+let today=new Date();today.setHours(12,0,0,0);mainDate.value=iso(add(today,-157));targetDate.value=iso(add(today,30));render();
 if("serviceWorker"in navigator)navigator.serviceWorker.register("sw.js");

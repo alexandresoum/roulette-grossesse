@@ -34,14 +34,24 @@ $("#share").onclick=async()=>{let t=$("#copy").dataset.text;if(navigator.share){
 function angle(ev){let r=wheel.getBoundingClientRect(),x=ev.clientX-(r.left+r.width/2),y=ev.clientY-(r.top+r.height/2);return Math.atan2(y,x)*180/Math.PI}
 function clampDate(d,start){let min=add(start,-14),max=add(start,315);if(d<min)return min;if(d>max)return max;return d}
 function setDeltaBadge(n){let sign=n>0?"+":n<0?"−":"±";dragDelta.textContent=`${sign} ${Math.abs(n)} j`;dragDelta.classList.toggle("positive",n>0);dragDelta.classList.toggle("negative",n<0)}
-function hapticIfPossible(n,old){if(n!==old&&navigator.vibrate){if(Math.abs(n)%7===0)navigator.vibrate(12);else navigator.vibrate(4)}}
 function applyDragFrame(){
  rafPending=false;let start=ddr();if(!start||!dragBaseDate)return;
  let newDays=Math.round(unwrappedAngle/DEG_PER_DAY);if(newDays===dragDays)return;
  let old=dragDays;dragDays=newDays;selected=clampDate(add(dragBaseDate,dragDays),start);
- rotor.style.transform=`rotate(${rotorBase+dragDays*DEG_PER_DAY}deg)`;setDeltaBadge(dragDays);hapticIfPossible(dragDays,old);render();
+ rotor.style.transform=`rotate(${rotorBase+dragDays*DEG_PER_DAY}deg)`;setDeltaBadge(dragDays);render();
 }
-wheel.addEventListener("pointerdown",e=>{dragging=true;wheel.classList.add("dragging");wheel.setPointerCapture(e.pointerId);lastRawAngle=angle(e);unwrappedAngle=0;dragDays=0;let today=new Date();today.setHours(12,0,0,0);dragBaseDate=selected?new Date(selected):today;setDeltaBadge(0)});
+
+document.querySelectorAll(".wheel-link").forEach(btn=>{
+  btn.addEventListener("click",e=>{
+    e.stopPropagation();
+    let start=ddr();
+    if(!start)return;
+    selected=add(start,+btn.dataset.offset);
+    render();
+  });
+});
+
+wheel.addEventListener("pointerdown",e=>{if(e.target.closest(".wheel-link"))return;dragging=true;wheel.classList.add("dragging");wheel.setPointerCapture(e.pointerId);lastRawAngle=angle(e);unwrappedAngle=0;dragDays=0;let today=new Date();today.setHours(12,0,0,0);dragBaseDate=selected?new Date(selected):today;setDeltaBadge(0)});
 wheel.addEventListener("pointermove",e=>{if(!dragging)return;e.preventDefault();let a=angle(e),delta=a-lastRawAngle;if(delta>180)delta-=360;if(delta<-180)delta+=360;unwrappedAngle+=delta;lastRawAngle=a;if(!rafPending){rafPending=true;requestAnimationFrame(applyDragFrame)}},{passive:false});
 function finishDrag(e){if(!dragging)return;dragging=false;wheel.classList.remove("dragging");dragDelta.classList.remove("positive","negative");if(e&&wheel.hasPointerCapture?.(e.pointerId)){try{wheel.releasePointerCapture(e.pointerId)}catch{}}}
 wheel.addEventListener("pointerup",finishDrag);wheel.addEventListener("pointercancel",finishDrag);wheel.addEventListener("lostpointercapture",()=>finishDrag());

@@ -26,6 +26,23 @@
 </section>
 <p class="sub" id="method">DDG = DDR + 14 jours • DPA = DDG + 39 semaines</p>
 
+<section class="today-term-card">
+  <div class="today-term-head">
+    <div>
+      <label>JE CONNAIS LE TERME AUJOURD’HUI</label>
+      <small>Saisis le terme pour retrouver la DDG</small>
+    </div>
+  </div>
+  <div class="today-term-row">
+    <div class="term-field"><input id="todayWeeks" type="number" min="2" max="45" value="24" inputmode="numeric"><span>SA</span></div>
+    <div class="term-field"><input id="todayDays" type="number" min="0" max="6" value="3" inputmode="numeric"><span>j</span></div>
+    <span class="term-arrow">→</span>
+    <div class="ddg-result"><small>DDG calculée</small><output id="calculatedDDG">—</output></div>
+  </div>
+  <button id="useCalculatedDDG" class="use-ddg" type="button">Utiliser cette DDG</button>
+</section>
+
+
 <section class="wheelbox">
   <div id="wheel" class="wheel">
     <div class="rotor" id="rotor">

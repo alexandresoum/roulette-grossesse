@@ -55,5 +55,31 @@ wheel.addEventListener("pointerdown",e=>{if(e.target.closest(".wheel-link"))retu
 wheel.addEventListener("pointermove",e=>{if(!dragging)return;e.preventDefault();let a=angle(e),delta=a-lastRawAngle;if(delta>180)delta-=360;if(delta<-180)delta+=360;unwrappedAngle+=delta;lastRawAngle=a;if(!rafPending){rafPending=true;requestAnimationFrame(applyDragFrame)}},{passive:false});
 function finishDrag(e){if(!dragging)return;dragging=false;wheel.classList.remove("dragging");dragDelta.classList.remove("positive","negative");if(e&&wheel.hasPointerCapture?.(e.pointerId)){try{wheel.releasePointerCapture(e.pointerId)}catch{}}}
 wheel.addEventListener("pointerup",finishDrag);wheel.addEventListener("pointercancel",finishDrag);wheel.addEventListener("lostpointercapture",()=>finishDrag());
+
+function calculateDDGFromTodayTerm(){
+  const wEl=$("#todayWeeks"),dEl=$("#todayDays"),out=$("#calculatedDDG");
+  if(!wEl||!dEl||!out)return null;
+  let w=Math.max(2,Math.min(45,parseInt(wEl.value||"0",10)));
+  let j=Math.max(0,Math.min(6,parseInt(dEl.value||"0",10)));
+  let today=new Date();today.setHours(12,0,0,0);
+  let gestDays=w*7+j;
+  let ddgDate=add(today,-(gestDays-14));
+  out.textContent=fmt(ddgDate,true);
+  out.dataset.iso=iso(ddgDate);
+  return ddgDate;
+}
+function useCalculatedDDG(){
+  let d=calculateDDGFromTodayTerm();
+  if(!d)return;
+  if(mode!=="ddg")setMode("ddg");
+  mainDate.value=iso(d);
+  selected=null;
+  render();
+  mainDate.scrollIntoView({behavior:"smooth",block:"center"});
+}
+["#todayWeeks","#todayDays"].forEach(sel=>{const el=$(sel);if(el)el.addEventListener("input",calculateDDGFromTodayTerm)});
+const useDDGBtn=$("#useCalculatedDDG");if(useDDGBtn)useDDGBtn.addEventListener("click",useCalculatedDDG);
+
 let today=new Date();today.setHours(12,0,0,0);mainDate.value=iso(add(today,-157));targetDate.value=iso(add(today,30));render();
+calculateDDGFromTodayTerm();
 if("serviceWorker"in navigator)navigator.serviceWorker.register("sw.js");

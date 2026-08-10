@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<main class="app">
+<main class="app"><div class="app-mode-switch"><button id="modePro" class="app-mode active" type="button">👩‍⚕️ Professionnel</button><button id="modePatient" class="app-mode" type="button">♡ Patiente</button></div><div id="professionalMode">
 <header>
   <div class="logo">◌</div>
   <h1>• ROULETTE DE GROSSESSE •</h1>
@@ -95,6 +95,105 @@
 <button id="copy" class="copy"><strong>COPIER POUR COMPTE RENDU</strong><span id="copyText">—</span></button>
 <button id="share" class="share">Partager le résumé</button>
 <footer>Aucune donnée patiente transmise • Calcul local sur l’appareil</footer>
+
+
+<section class="pro-patient-transfer">
+  <button id="openPatientQR" class="patient-transfer-btn" type="button">
+    <span class="transfer-icon">▦</span>
+    <span><b>Envoyer à la patiente</b><small>Créer son QR code avec la DDG calculée</small></span>
+  </button>
+</section>
+
+<dialog id="patientQRDialog" class="patient-qr-dialog">
+  <div class="qr-dialog-inner">
+    <button id="closePatientQR" class="dialog-close" type="button" aria-label="Fermer">×</button>
+    <span class="eyebrow">MODE PATIENTE</span>
+    <h3>Scannez pour emporter votre grossesse</h3>
+    <p class="qr-intro">Le QR code ouvre directement l’espace patiente avec la DDG calculée sur cette roulette.</p>
+    <div class="qr-summary">
+      <div><span>DDG / terme écho</span><b id="qrDDG">—</b></div>
+      <div><span>Terme prévu</span><b id="qrDPA">—</b></div>
+    </div>
+    <div id="patientQRCode" class="patient-qrcode" aria-label="QR code patiente"></div>
+    <p id="qrStatus" class="qr-status"></p>
+    <div class="qr-actions"><button id="copyPatientLink" class="copy-patient-link" type="button">Copier le lien patiente</button><button id="printPatientQR" class="print-patient-qr" type="button">Imprimer / enregistrer le QR</button></div>
+    <small class="qr-privacy">Aucun nom ni prénom n’est inclus dans le QR code. Seule la date nécessaire au calcul est transmise.</small>
+  </div>
+</dialog>
+</div>
+<section id="patientMode" class="patient-mode" hidden>
+  <header class="patient-header">
+    <div><span class="eyebrow">MODE PATIENTE</span><h2>Votre grossesse aujourd’hui <span>♡</span></h2></div>
+    <button id="backToPro" class="patient-back" type="button">Calcul</button>
+  </header>
+
+  <section class="patient-hero">
+    <div class="patient-summary">
+      <span>Vous êtes aujourd’hui à</span>
+      <strong id="patientTerm">—</strong>
+      <small id="patientDate">—</small>
+      <div class="patient-dpa"><span>Terme prévu</span><b id="patientDPA">—</b></div>
+    </div>
+    <button id="fetalImageButton" class="fetal-image-button" type="button">
+      <img id="fetalImage" src="assets/24sa.png" alt="Illustration du développement fœtal">
+      <span>Toucher l’image pour en savoir plus</span>
+    </button>
+  </section>
+
+  <section class="baby-now">
+    <span class="eyebrow">VOTRE BÉBÉ EN CE MOMENT</span>
+    <h3 id="babyStageTitle">Votre bébé grandit</h3>
+    <p id="babyStageText">Chaque grossesse évolue à son propre rythme.</p>
+    <div class="baby-facts">
+      <div><span>◌</span><b id="babyFact1">Développement</b><small id="babyFact1Text">Les organes poursuivent leur maturation.</small></div>
+      <div><span>♡</span><b id="babyFact2">Mouvements</b><small id="babyFact2Text">Les mouvements évoluent au fil des semaines.</small></div>
+      <div><span>✦</span><b id="babyFact3">Repère</b><small id="babyFact3Text">Illustration indicative du stade de grossesse.</small></div>
+    </div>
+  </section>
+
+  <section class="patient-steps">
+    <div class="section-title-row"><h3>Vos prochaines étapes</h3><button id="showAllStages" type="button">Développement</button></div>
+    <div id="patientTimeline" class="patient-timeline"></div>
+  </section>
+
+  <section class="development-section">
+    <h3>Le développement de votre bébé <span>♡</span></h3>
+    <p>Découvrez quelques grandes étapes de sa croissance.</p>
+    <div id="developmentCards" class="development-cards"></div>
+  </section>
+
+  <section class="patient-note">Les illustrations et informations sont indicatives. Chaque grossesse est unique et suit son propre rythme.</section>
+
+  <div class="patient-actions">
+    <button id="sharePatient" type="button">Partager mon calendrier</button>
+    <button id="returnCalc" type="button">Modifier le calcul</button>
+  </div>
+
+  <dialog id="babyDialog" class="baby-dialog">
+    <form method="dialog">
+      <button class="dialog-close" aria-label="Fermer">×</button>
+      <img id="dialogBabyImage" src="assets/24sa.png" alt="">
+      <span class="eyebrow" id="dialogStage">—</span>
+      <h3 id="dialogTitle">Votre bébé à ce stade</h3>
+      <p id="dialogText">—</p>
+      <small>Illustration pédagogique non contractuelle.</small>
+    </form>
+  </dialog>
+</section>
+
+<section id="patientQRPrintSheet" class="patient-qr-print-sheet" aria-hidden="true">
+  <div class="print-card">
+    <h1>Votre suivi de grossesse</h1>
+    <img id="printQRCodeImage" alt="QR code de votre suivi de grossesse">
+    <p>Scannez pour retrouver votre terme, les étapes du développement de votre bébé et vos rendez vous échographies.</p>
+    <div class="print-dates">
+      <div><span>DDG</span><b id="printDDG">—</b></div>
+      <div><span>Terme prévu</span><b id="printDPA">—</b></div>
+    </div>
+    <small>Accès personnel sans nom ni prénom. Les informations sont enregistrées uniquement sur votre appareil.</small>
+  </div>
+</section>
+
 </main>
 
 <dialog id="dlg"><form method="dialog">
@@ -104,6 +203,7 @@
 <button>Fermer</button>
 </form></dialog>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

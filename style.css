@@ -203,3 +203,20 @@ dialog{border:1px solid #4e608b;border-radius:20px;background:#0a1a35;color:whit
   .print-dates b{font-size:12pt;margin-top:2mm}
   .print-card small{display:block;color:#666;font-size:8.5pt}
 }
+
+
+/* V5 — développement fœtal enrichi */
+.dev-card{align-self:stretch}
+.dev-card strong{display:block;color:#fff;font-size:11px;line-height:1.25;margin-top:4px}
+.dev-card p{color:#c5ccdc;font-size:10px;line-height:1.35;margin:7px 0 8px}
+.dev-info{display:block;border-top:1px solid rgba(71,92,134,.55);padding:6px 0 0;margin-top:5px;color:#aeb9cf;font-size:9px;line-height:1.3}
+.dev-info i{display:block;color:#f17cc0;font-style:normal;font-weight:800;margin-bottom:2px}
+.baby-dialog .dialog-main{display:block;color:#c5ccdc;line-height:1.5;margin-bottom:12px}
+.baby-dialog .dialog-detail{display:block;border-top:1px solid #2f466d;padding:10px 0;color:#b9c3d8;line-height:1.45}
+.baby-dialog .dialog-detail b{display:block;color:#f17cc0;margin-bottom:3px}
+.development-cards{align-items:stretch}
+@media(max-width:600px){
+ .development-cards{grid-template-columns:repeat(10,148px)}
+ .dev-card{min-width:148px}
+ .dev-card img{width:96px;height:96px;margin:0 auto;display:block}
+}

@@ -84,16 +84,86 @@ let today=new Date();today.setHours(12,0,0,0);mainDate.value=iso(add(today,-157)
 calculateDDGFromTodayTerm();
 
 const patientStages=[
- {min:0,max:7,label:"6 SA",img:"assets/6sa.png",title:"Les tout premiers développements",text:"À ce stade précoce, les structures essentielles commencent à se mettre en place.",facts:["Début du développement","Croissance rapide","1er trimestre"]},
- {min:8,max:9,label:"8 SA",img:"assets/8sa.png",title:"Les premiers organes se forment",text:"La croissance est très rapide et la silhouette embryonnaire devient de plus en plus identifiable.",facts:["Organes en formation","Croissance","1er trimestre"]},
- {min:10,max:11,label:"10 SA",img:"assets/10sa.png",title:"Une silhouette qui se précise",text:"Le développement se poursuit rapidement et les principaux organes continuent leur maturation.",facts:["Silhouette plus nette","Maturation","1er trimestre"]},
- {min:12,max:15,label:"12 SA",img:"assets/12sa.png",title:"Fin du premier trimestre",text:"La silhouette fœtale est bien identifiable et les mouvements se développent progressivement.",facts:["Organes en place","Mouvements","Fin du T1"]},
- {min:16,max:19,label:"16 SA",img:"assets/16sa.png",title:"Croissance et mouvements",text:"Votre bébé grandit et ses mouvements deviennent progressivement plus coordonnés.",facts:["Croissance","Mouvements","2e trimestre"]},
- {min:20,max:23,label:"20 SA",img:"assets/20sa.png",title:"Le deuxième trimestre avance",text:"Le développement sensoriel et moteur progresse, tandis que la croissance s’accélère.",facts:["Sens en développement","Mouvements","2e trimestre"]},
- {min:24,max:27,label:"24 SA",img:"assets/24sa.png",title:"Votre bébé réagit davantage",text:"La maturation se poursuit et les réactions aux sons et aux stimulations deviennent plus présentes.",facts:["Réactions","Maturation","2e trimestre"]},
- {min:28,max:31,label:"28 SA",img:"assets/28sa.png",title:"Entrée dans le troisième trimestre",text:"Votre bébé prend davantage de poids et poursuit la maturation de ses différents organes.",facts:["Prise de poids","Maturation","3e trimestre"]},
- {min:32,max:36,label:"32 SA",img:"assets/32sa.png",title:"Une croissance importante",text:"La prise de poids s’accentue et la maturation se poursuit en vue de la naissance.",facts:["Croissance","Maturation finale","3e trimestre"]},
- {min:37,max:45,label:"37–41 SA",img:"assets/37sa.png",title:"Bébé à terme",text:"À partir de 37 SA, la grossesse entre dans sa période de terme.",facts:["À terme","Croissance finale","Rencontre proche"]}
+ {
+  min:0,max:7,label:"6 SA",img:"assets/6sa.png",
+  title:"Les tout premiers développements",
+  text:"La croissance est très rapide. Les premières structures du futur cerveau, du cœur et des membres commencent à se mettre en place.",
+  organes:"Le cœur débute son activité et les ébauches du cerveau, du tube digestif et des membres se développent.",
+  sensoriel:"Le système nerveux commence à se structurer ; les fonctions sensorielles sont encore très immatures.",
+  interaction:"Les premiers mouvements cellulaires et embryonnaires existent, mais ils ne sont pas encore perceptibles."
+ },
+ {
+  min:8,max:9,label:"8 SA",img:"assets/8sa.png",
+  title:"Les organes prennent forme",
+  text:"La silhouette se précise rapidement : tête, tronc, bras et jambes deviennent de plus en plus reconnaissables.",
+  organes:"Les principaux organes sont en formation et le cœur poursuit son développement.",
+  sensoriel:"Le cerveau se développe rapidement et les premières connexions nerveuses apparaissent.",
+  interaction:"De petits mouvements spontanés commencent, encore trop discrets pour être ressentis."
+ },
+ {
+  min:10,max:11,label:"10 SA",img:"assets/10sa.png",
+  title:"Une silhouette de plus en plus humaine",
+  text:"Les traits se dessinent et les doigts et les orteils sont individualisés. La croissance reste très rapide.",
+  organes:"Les organes essentiels sont présents et poursuivent leur maturation et leur organisation.",
+  sensoriel:"Le système nerveux commence à coordonner des réponses motrices simples.",
+  interaction:"Le fœtus réalise des mouvements réflexes spontanés visibles à l’échographie."
+ },
+ {
+  min:12,max:15,label:"12 SA",img:"assets/12sa.png",
+  title:"Fin du premier trimestre",
+  text:"Le bébé bouge déjà beaucoup même si ces mouvements ne sont généralement pas encore perçus par la mère.",
+  organes:"Les organes sont en place et poursuivent leur maturation ; les reins commencent notamment à fonctionner.",
+  sensoriel:"Le système nerveux se complexifie et les récepteurs sensoriels commencent progressivement à se développer.",
+  interaction:"Il peut ouvrir la bouche, déglutir du liquide amniotique et effectuer de nombreux mouvements."
+ },
+ {
+  min:16,max:19,label:"16 SA",img:"assets/16sa.png",
+  title:"Croissance et mouvements",
+  text:"Le corps s’allonge et les mouvements deviennent plus coordonnés. Certaines patientes commencent à les ressentir.",
+  organes:"Le foie, les reins et le système digestif poursuivent leur maturation.",
+  sensoriel:"L’audition se met progressivement en place ; le goût et l’odorat poursuivent également leur développement.",
+  interaction:"Le bébé bouge, se retourne, porte parfois les mains au visage ou suce son pouce."
+ },
+ {
+  min:20,max:23,label:"20 SA",img:"assets/20sa.png",
+  title:"Le monde extérieur devient perceptible",
+  text:"Le développement moteur et sensoriel s’accélère et les mouvements sont de mieux en mieux coordonnés.",
+  organes:"Le squelette se renforce et les différents organes poursuivent leur croissance et leur spécialisation.",
+  sensoriel:"L’audition progresse : le bébé perçoit de plus en plus les sons internes et certaines voix extérieures.",
+  interaction:"Il réagit aux mouvements maternels, aux changements de position et progressivement à certains sons."
+ },
+ {
+  min:24,max:27,label:"24 SA",img:"assets/24sa.png",
+  title:"Votre bébé réagit davantage",
+  text:"La maturation neurologique et pulmonaire se poursuit. Les périodes de sommeil et d’éveil commencent à être mieux organisées.",
+  organes:"Les poumons poursuivent leur maturation et le cerveau développe de nouvelles connexions.",
+  sensoriel:"Les réactions aux sons et à la lumière deviennent plus nettes.",
+  interaction:"Le bébé peut réagir à votre voix, à la musique, aux mouvements et aux stimulations extérieures."
+ },
+ {
+  min:28,max:31,label:"28 SA",img:"assets/28sa.png",
+  title:"Entrée dans le troisième trimestre",
+  text:"La prise de poids devient importante et le cerveau poursuit une phase intense de maturation.",
+  organes:"Les poumons, le cerveau et le système digestif continuent à mûrir ; les réserves corporelles augmentent.",
+  sensoriel:"Il reconnaît progressivement des sons familiers et différencie davantage les périodes de lumière et d’obscurité.",
+  interaction:"Les mouvements sont francs et les cycles veille-sommeil deviennent plus organisés."
+ },
+ {
+  min:32,max:36,label:"32 SA",img:"assets/32sa.png",
+  title:"Une maturation de plus en plus complète",
+  text:"Le bébé prend du poids rapidement et se prépare progressivement à la vie après la naissance.",
+  organes:"Les poumons sont presque matures et le système immunitaire continue à se développer.",
+  sensoriel:"La vue et l’audition progressent ; il perçoit les variations lumineuses et reconnaît des sons familiers.",
+  interaction:"Il manque progressivement de place mais ses mouvements restent présents et bien perceptibles."
+ },
+ {
+  min:37,max:45,label:"37–41 SA",img:"assets/37sa.png",
+  title:"Bébé à terme",
+  text:"À partir de 37 SA, la grossesse entre dans la période du terme. Le bébé poursuit surtout sa prise de poids.",
+  organes:"Les grandes fonctions sont matures et prêtes à assurer l’adaptation à la vie extra-utérine.",
+  sensoriel:"Les sens sont fonctionnels : audition, toucher, goût, odorat et vision poursuivront leur maturation après la naissance.",
+  interaction:"Il réagit aux voix, au toucher et aux mouvements ; il alterne périodes de sommeil et d’éveil."
+ }
 ];
 function patientStageFor(w){return patientStages.find(s=>w>=s.min&&w<=s.max)||patientStages[patientStages.length-1]}
 function currentPregnancyData(){
@@ -115,10 +185,12 @@ function renderPatient(){
  $("#patientDPA").textContent=fmt(data.dpa);
  if($("#fetalImage").dataset.stage!==s.label){$("#fetalImage").dataset.stage=s.label;fadePatientImage(s.img)}
  $("#babyStageTitle").textContent=s.title;$("#babyStageText").textContent=s.text;
- $("#babyFact1").textContent=s.facts[0];$("#babyFact2").textContent=s.facts[1];$("#babyFact3").textContent=s.facts[2];
- $("#babyFact1Text").textContent="Le développement se poursuit semaine après semaine.";
- $("#babyFact2Text").textContent="Les capacités de votre bébé évoluent progressivement.";
- $("#babyFact3Text").textContent="L’illustration représente une grande étape, pas une mesure exacte.";
+ $("#babyFact1").textContent="Organes";
+ $("#babyFact2").textContent="Sensoriel";
+ $("#babyFact3").textContent="Interactions";
+ $("#babyFact1Text").textContent=s.organes;
+ $("#babyFact2Text").textContent=s.sensoriel;
+ $("#babyFact3Text").textContent=s.interaction;
  const marks=[
    ["22 SA","Échographie T2",154,true],
    ["32 SA","Échographie T3",224,true],
@@ -136,12 +208,28 @@ function renderPatient(){
    </div>
  `).join("");
  document.querySelectorAll(".timeline-main").forEach(b=>b.onclick=()=>{selected=add(data.start,+b.dataset.o);switchToPro();render()});
- $("#developmentCards").innerHTML=patientStages.map(x=>`<button class="dev-card ${x===s?"active":""}" data-stage="${x.label}"><img src="${x.img}" alt=""><b>${x.label}</b><small>${x.title}</small></button>`).join("");
+ $("#developmentCards").innerHTML=patientStages.map(x=>`
+ <button class="dev-card ${x===s?"active":""}" data-stage="${x.label}">
+   <img src="${x.img}" alt="Illustration du développement fœtal à ${x.label}">
+   <b>${x.label}</b>
+   <strong>${x.title}</strong>
+   <p>${x.text}</p>
+   <span class="dev-info"><i>Organes</i>${x.organes}</span>
+   <span class="dev-info"><i>Sensoriel</i>${x.sensoriel}</span>
+   <span class="dev-info"><i>Interactions</i>${x.interaction}</span>
+ </button>`).join("");
  document.querySelectorAll(".dev-card").forEach(b=>b.onclick=()=>openBabyDialog(patientStages.find(x=>x.label===b.dataset.stage)));
 }
 function openBabyDialog(stage){
  if(!stage)return;
- $("#dialogBabyImage").src=stage.img;$("#dialogStage").textContent=stage.label;$("#dialogTitle").textContent=stage.title;$("#dialogText").textContent=stage.text;
+ $("#dialogBabyImage").src=stage.img;
+ $("#dialogStage").textContent=stage.label;
+ $("#dialogTitle").textContent=stage.title;
+ $("#dialogText").innerHTML=`
+   <span class="dialog-main">${stage.text}</span>
+   <span class="dialog-detail"><b>Organes</b>${stage.organes}</span>
+   <span class="dialog-detail"><b>Sensoriel</b>${stage.sensoriel}</span>
+   <span class="dialog-detail"><b>Interactions</b>${stage.interaction}</span>`;
  $("#babyDialog").showModal();
 }
 function switchToPatient(){

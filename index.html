@@ -169,20 +169,33 @@
   </div>
 
   <dialog id="babyDialog" class="baby-dialog growth-dialog">
-    <form method="dialog">
-      <button class="dialog-close" aria-label="Fermer">×</button>
-      <span class="eyebrow" id="dialogStage">—</span>
-      <h3 id="dialogTitle">Votre bébé aujourd’hui</h3>
-      <img id="dialogBabyImage" class="growth-baby-image" src="assets/24sa.png" alt="">
-      <div class="growth-numbers">
-        <div class="growth-stat"><span class="growth-icon">⌇</span><small>Taille estimée</small><strong id="growthSize">—</strong><em>de la tête aux pieds*</em></div>
-        <div class="growth-stat"><span class="growth-icon">⚖</span><small>Poids estimé</small><strong id="growthWeight">—</strong><em>valeur moyenne*</em></div>
+  <form method="dialog">
+    <button class="dialog-close" aria-label="Fermer">×</button>
+    <span class="eyebrow" id="dialogStage">—</span>
+    <h3 id="dialogTitle">Votre bébé aujourd’hui</h3>
+    <img id="dialogBabyImage" class="growth-baby-image" src="assets/24sa.png" alt="">
+    <div class="growth-numbers">
+      <div class="growth-stat">
+        <span class="growth-icon">↕</span>
+        <small>Taille estimée</small>
+        <strong id="growthSize">—</strong>
+        <em>de la tête aux pieds*</em>
       </div>
-      <div class="growth-chart-wrap"><h4>Sa croissance</h4><div id="growthChart" class="growth-chart"></div></div>
-      <p class="growth-note">* Valeurs moyennes indicatives. Chaque bébé grandit à son rythme.</p>
-      <p id="dialogText" hidden></p>
-    </form>
-  </dialog>
+      <div class="growth-stat">
+        <span class="growth-icon">⚖</span>
+        <small>Poids estimé</small>
+        <strong id="growthWeight">—</strong>
+        <em>valeur moyenne*</em>
+      </div>
+    </div>
+    <div class="growth-chart-wrap">
+      <h4>Sa croissance</h4>
+      <div id="growthChart" class="growth-chart"></div>
+    </div>
+    <p class="growth-note">* Valeurs moyennes indicatives. Chaque bébé grandit à son rythme.</p>
+    <p id="dialogText" hidden></p>
+  </form>
+</dialog>
 </section>
 
 <section id="patientQRPrintSheet" class="patient-qr-print-sheet" aria-hidden="true">

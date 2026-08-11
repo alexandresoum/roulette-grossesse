@@ -1,4 +1,4 @@
-const C="roulette-v5-7-6-measures-final";
+const C="roulette-v5-7-5-network-first";
 const A=["./","index.html","style.css","app.js","manifest.webmanifest","icon.svg",
 "assets/28sa.png","assets/20sa.png","assets/10sa.png","assets/6sa.png","assets/8sa.png",
 "assets/12sa.png","assets/16sa.png","assets/24sa.png","assets/32sa.png","assets/37sa.png"];

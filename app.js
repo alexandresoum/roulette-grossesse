@@ -457,6 +457,15 @@ document.addEventListener("click",(e)=>{
 
 
 
+/* V5.7.5 — purge des anciennes versions sur navigateur classique */
+(function purgeLegacyBrowserCache(){
+ const standalone=window.matchMedia("(display-mode: standalone)").matches;
+ if(standalone)return;
+ if("caches" in window){
+   caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith("roulette-v5")).map(k=>caches.delete(k)))).catch(()=>{});
+ }
+})();
+
 /* Démarrage V5.7.4 : QR = Patiente ; PWA patiente = Patiente ; navigateur normal = Pro */
 (function bootApp(){
  const params=new URLSearchParams(location.search);
@@ -477,5 +486,5 @@ document.addEventListener("click",(e)=>{
  setTimeout(openProPin,80);
 })();
 
-if("serviceWorker"in navigator)navigator.serviceWorker.register("sw.js");
+if("serviceWorker"in navigator)navigator.serviceWorker.register("sw.js?v=5.7.5",{updateViaCache:"none"});
 

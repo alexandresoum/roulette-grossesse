@@ -103,7 +103,7 @@ dialog{border:1px solid #4e608b;border-radius:20px;background:#0a1a35;color:whit
 .baby-now,.patient-steps,.development-section{margin-top:16px;border:1px solid #293f68;border-radius:20px;background:#08172f;padding:16px}
 .baby-now h3,.patient-steps h3,.development-section h3{margin:6px 0 7px;font-size:20px}
 .baby-now p,.development-section>p{color:#aeb8cf;margin-top:0}
-.baby-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:14px}
+.baby-facts{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:14px}
 .baby-facts>div{border-top:1px solid #293f68;padding-top:12px}
 .baby-facts span{color:var(--violet);font-size:24px}
 .baby-facts b,.baby-facts small{display:block}
@@ -219,4 +219,12 @@ dialog{border:1px solid #4e608b;border-radius:20px;background:#0a1a35;color:whit
  .development-cards{grid-template-columns:repeat(10,148px)}
  .dev-card{min-width:148px}
  .dev-card img{width:96px;height:96px;margin:0 auto;display:block}
+}
+
+
+/* V5.2 — illustrations validées individuellement */
+.fetal-image-button img,
+.dev-card img,
+.baby-dialog img{
+  object-position:center;
 }

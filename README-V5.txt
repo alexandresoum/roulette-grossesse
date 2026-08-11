@@ -15,3 +15,6 @@ Contenu :
 MISE EN LIGNE GITHUB :
 Envoyer tout le contenu de ce dossier, y compris assets/.
 Conserver le fichier CNAME déjà présent dans le dépôt GitHub.
+
+
+V5.1 : illustrations remplacées par les 10 visuels du design validé, recadrés proprement.

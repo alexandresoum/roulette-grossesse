@@ -87,7 +87,7 @@ calculateDDGFromTodayTerm();
 const patientStages=[
  {
   min:0,max:7,label:"6 SA",img:"assets/6sa.png",
-  cheveux:"Pas de pilosité visible à ce stade ; la peau et ses structures sont encore très précoces.",
+  cheveux:"La peau est encore très fine et en plein développement ; aucune pilosité n’est visible à ce stade.",
   title:"Les tout premiers développements",
   text:"La croissance est très rapide. Les premières structures du futur cerveau, du cœur et des membres commencent à se mettre en place.",
   organes:"Le cœur débute son activité et les ébauches du cerveau, du tube digestif et des membres se développent.",
@@ -96,7 +96,7 @@ const patientStages=[
  },
  {
   min:8,max:9,label:"8 SA",img:"assets/8sa.png",
-  cheveux:"La peau poursuit sa formation ; la pilosité n’est pas encore développée.",
+  cheveux:"La peau reste très fine et poursuit sa formation ; la pilosité n’est pas encore développée.",
   title:"Les organes prennent forme",
   text:"La silhouette se précise rapidement : tête, tronc, bras et jambes deviennent de plus en plus reconnaissables.",
   organes:"Les principaux organes sont en formation et le cœur poursuit son développement.",
@@ -105,7 +105,7 @@ const patientStages=[
  },
  {
   min:10,max:11,label:"10 SA",img:"assets/10sa.png",
-  cheveux:"Les structures cutanées poursuivent leur développement ; les futurs follicules pileux se mettent progressivement en place.",
+  cheveux:"La peau poursuit sa maturation et les futurs follicules pileux se mettent progressivement en place.",
   title:"Une silhouette de plus en plus humaine",
   text:"Les traits se dessinent et les doigts et les orteils sont individualisés. La croissance reste très rapide.",
   organes:"Les organes essentiels sont présents et poursuivent leur maturation et leur organisation.",
@@ -114,7 +114,7 @@ const patientStages=[
  },
  {
   min:12,max:15,label:"12 SA",img:"assets/12sa.png",
-  cheveux:"Le cuir chevelu se structure et les follicules pileux poursuivent leur développement.",
+  cheveux:"La peau reste fine ; le cuir chevelu se structure et les follicules pileux poursuivent leur développement.",
   title:"Fin du premier trimestre",
   text:"Le bébé bouge déjà beaucoup même si ces mouvements ne sont généralement pas encore perçus par la mère.",
   organes:"Les organes sont en place et poursuivent leur maturation ; les reins commencent notamment à fonctionner.",
@@ -123,7 +123,7 @@ const patientStages=[
  },
  {
   min:16,max:19,label:"16 SA",img:"assets/16sa.png",
-  cheveux:"Le lanugo, un duvet très fin, commence progressivement à apparaître.",
+  cheveux:"La peau est encore fine et peu graisseuse ; le lanugo, un duvet très fin, commence progressivement à apparaître.",
   title:"Croissance et mouvements",
   text:"Le corps s’allonge et les mouvements deviennent plus coordonnés. Certaines patientes commencent à les ressentir.",
   organes:"Le foie, les reins et le système digestif poursuivent leur maturation.",
@@ -132,7 +132,7 @@ const patientStages=[
  },
  {
   min:20,max:23,label:"20 SA",img:"assets/20sa.png",
-  cheveux:"Le lanugo devient bien présent sur le corps et les cheveux du cuir chevelu commencent à pousser.",
+  cheveux:"La peau est protégée progressivement par le vernix et le lanugo devient bien présent ; les cheveux commencent à pousser.",
   title:"Le monde extérieur devient perceptible",
   text:"Le développement moteur et sensoriel s’accélère et les mouvements sont de mieux en mieux coordonnés.",
   organes:"Le squelette se renforce et les différents organes poursuivent leur croissance et leur spécialisation.",
@@ -141,7 +141,7 @@ const patientStages=[
  },
  {
   min:24,max:27,label:"24 SA",img:"assets/24sa.png",
-  cheveux:"Le lanugo recouvre largement le corps ; les cheveux du cuir chevelu deviennent plus visibles.",
+  cheveux:"La peau reste fine mais poursuit sa maturation ; vernix et lanugo la protègent, tandis que les cheveux deviennent plus visibles.",
   title:"Votre bébé réagit davantage",
   text:"La maturation neurologique et pulmonaire se poursuit. Les périodes de sommeil et d’éveil commencent à être mieux organisées.",
   organes:"Les poumons poursuivent leur maturation et le cerveau développe de nouvelles connexions.",
@@ -150,7 +150,7 @@ const patientStages=[
  },
  {
   min:28,max:31,label:"28 SA",img:"assets/28sa.png",
-  cheveux:"Les cheveux sont visibles et le lanugo est encore présent sur une grande partie du corps.",
+  cheveux:"La peau s’épaissit progressivement avec l’augmentation de la graisse sous-cutanée ; les cheveux sont visibles et le lanugo reste présent.",
   title:"Entrée dans le troisième trimestre",
   text:"La prise de poids devient importante et le cerveau poursuit une phase intense de maturation.",
   organes:"Les poumons, le cerveau et le système digestif continuent à mûrir ; les réserves corporelles augmentent.",
@@ -159,7 +159,7 @@ const patientStages=[
  },
  {
   min:32,max:36,label:"32 SA",img:"assets/32sa.png",
-  cheveux:"Les cheveux du cuir chevelu sont bien visibles ; le lanugo commence progressivement à diminuer.",
+  cheveux:"La peau devient plus lisse avec l’accumulation de graisse sous-cutanée ; les cheveux sont visibles et le lanugo commence à diminuer.",
   title:"Une maturation de plus en plus complète",
   text:"Le bébé prend du poids rapidement et se prépare progressivement à la vie après la naissance.",
   organes:"Les poumons sont presque matures et le système immunitaire continue à se développer.",
@@ -168,7 +168,7 @@ const patientStages=[
  },
  {
   min:37,max:45,label:"37–41 SA",img:"assets/37sa.png",
-  cheveux:"La quantité de cheveux varie d’un bébé à l’autre ; le lanugo a en grande partie diminué avant la naissance.",
+  cheveux:"La peau est plus épaisse et plus lisse à terme ; la quantité de cheveux varie selon les bébés et le lanugo a en grande partie disparu.",
   title:"Bébé à terme",
   text:"À partir de 37 SA, la grossesse entre dans la période du terme. Le bébé poursuit surtout sa prise de poids.",
   organes:"Les grandes fonctions sont matures et prêtes à assurer l’adaptation à la vie extra-utérine.",
@@ -199,7 +199,7 @@ function renderPatient(){
  $("#babyFact1").textContent="Organes";
  $("#babyFact2").textContent="Sensoriel";
  $("#babyFact3").textContent="Interactions";
- $("#babyFact4").textContent="Cheveux";
+ $("#babyFact4").textContent="Peau / cheveux";
  $("#babyFact1Text").textContent=s.organes;
  $("#babyFact2Text").textContent=s.sensoriel;
  $("#babyFact3Text").textContent=s.interaction;
@@ -230,7 +230,7 @@ function renderPatient(){
    <span class="dev-info"><i>Organes</i>${x.organes}</span>
    <span class="dev-info"><i>Sensoriel</i>${x.sensoriel}</span>
    <span class="dev-info"><i>Interactions</i>${x.interaction}</span>
-   <span class="dev-info"><i>Cheveux</i>${x.cheveux}</span>
+   <span class="dev-info"><i>Peau / cheveux</i>${x.cheveux}</span>
  </button>`).join("");
  document.querySelectorAll(".dev-card").forEach(b=>b.onclick=()=>openBabyDialog(patientStages.find(x=>x.label===b.dataset.stage)));
 }
@@ -244,7 +244,7 @@ function openBabyDialog(stage){
    <span class="dialog-detail"><b>Organes</b>${stage.organes}</span>
    <span class="dialog-detail"><b>Sensoriel</b>${stage.sensoriel}</span>
    <span class="dialog-detail"><b>Interactions</b>${stage.interaction}</span>
-   <span class="dialog-detail"><b>Cheveux</b>${stage.cheveux}</span>`;
+   <span class="dialog-detail"><b>Peau / cheveux</b>${stage.cheveux}</span>`;
  $("#babyDialog").showModal();
 }
 

@@ -228,3 +228,72 @@ dialog{border:1px solid #4e608b;border-radius:20px;background:#0a1a35;color:whit
 .baby-dialog img{
   object-position:center;
 }
+
+/* V5.3 — espace patiente verrouillé */
+body.patient-locked .app-mode-switch{display:none !important}
+body.patient-locked #professionalMode{display:none !important}
+body.patient-locked #backToPro,
+body.patient-locked #returnCalc{display:none !important}
+body.patient-locked .patient-header{grid-template-columns:1fr !important}
+body.patient-locked .patient-actions{grid-template-columns:1fr !important}
+
+/* V5.4 — PIN mode professionnel */
+body.pro-locked .app-mode-switch{visibility:hidden}
+body.pro-locked #professionalMode,
+body.pro-locked #patientMode{display:none !important}
+
+.pro-pin-dialog{
+  border:1px solid #6f4fa7;
+  border-radius:24px;
+  width:min(92vw,420px);
+  padding:0;
+  background:#07162f;
+  color:#fff;
+}
+.pro-pin-dialog::backdrop{
+  background:rgba(0,0,0,.82);
+  backdrop-filter:blur(5px);
+}
+.pro-pin-card{
+  position:relative;
+  padding:28px 22px 24px;
+  text-align:center;
+}
+.pro-pin-card h3{font-size:26px;margin:8px 0}
+.pro-pin-card p{color:#b8c1d4;line-height:1.45}
+.pro-pin-icon{font-size:42px;margin-bottom:4px}
+.pro-pin-input{
+  width:180px;
+  max-width:80%;
+  margin:18px auto 8px;
+  display:block;
+  text-align:center;
+  letter-spacing:14px;
+  font-size:30px;
+  font-weight:800;
+  border-radius:15px;
+  border:1px solid #7958b7;
+  background:#091b39;
+  color:#ff7ac5;
+  padding:13px 8px 13px 20px;
+  outline:none;
+}
+.pro-pin-input:focus{
+  border-color:#ed70bb;
+  box-shadow:0 0 0 3px rgba(237,112,187,.12);
+}
+.pro-pin-error{
+  min-height:20px;
+  color:#ff7b91 !important;
+  font-weight:700;
+  margin:4px 0 10px !important;
+}
+.pro-pin-submit{
+  width:100%;
+  border:1px solid #9b64d5;
+  border-radius:14px;
+  padding:13px;
+  color:#fff;
+  font-weight:800;
+  background:linear-gradient(100deg,#7653bd,#c75ca6);
+}

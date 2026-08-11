@@ -124,7 +124,6 @@
 <section id="patientMode" class="patient-mode" hidden>
   <header class="patient-header">
     <div><span class="eyebrow">MODE PATIENTE</span><h2>Votre grossesse aujourd’hui <span>♡</span></h2></div>
-    <button id="backToPro" class="patient-back" type="button">Calcul</button>
   </header>
 
   <section class="patient-hero">
@@ -167,7 +166,6 @@
 
   <div class="patient-actions">
     <button id="sharePatient" type="button">Partager mon calendrier</button>
-    <button id="returnCalc" type="button">Modifier le calcul</button>
   </div>
 
   <dialog id="babyDialog" class="baby-dialog">
@@ -194,6 +192,28 @@
     <small>Accès personnel sans nom ni prénom. Les informations sont enregistrées uniquement sur votre appareil.</small>
   </div>
 </section>
+
+
+<dialog id="proPinDialog" class="pro-pin-dialog">
+  <form method="dialog" class="pro-pin-card" id="proPinForm">
+    <button type="button" class="dialog-close" id="closeProPin" aria-label="Fermer">×</button>
+    <div class="pro-pin-icon">👩‍⚕️</div>
+    <span class="eyebrow">ACCÈS PROFESSIONNEL</span>
+    <h3>Code PIN requis</h3>
+    <p>Entrez le code professionnel pour accéder à la roulette obstétricale.</p>
+    <input id="proPinInput"
+           class="pro-pin-input"
+           type="password"
+           inputmode="numeric"
+           pattern="[0-9]*"
+           maxlength="4"
+           autocomplete="off"
+           placeholder="••••"
+           aria-label="Code PIN professionnel">
+    <p id="proPinError" class="pro-pin-error" aria-live="polite"></p>
+    <button class="pro-pin-submit" type="submit">Accéder au mode Professionnel</button>
+  </form>
+</dialog>
 
 </main>
 

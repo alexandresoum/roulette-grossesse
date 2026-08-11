@@ -1,5 +1,6 @@
 const DAY=86400000,$=s=>document.querySelector(s);
 let mode="ddg",selected=null,dragging=false,lastRawAngle=0,unwrappedAngle=0,dragBaseDate=null,dragDays=0,rotorBase=0,rafPending=false;
+let patientLocked=false;
 const DEG_PER_DAY=5,mainDate=$("#mainDate"),targetDate=$("#targetDate"),wheel=$("#wheel"),rotor=$("#rotor"),dragDelta=$("#dragDelta");
 function parse(v){if(!v)return null;let [y,m,d]=v.split("-").map(Number);return new Date(y,m-1,d,12)}
 function iso(d){return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
@@ -246,18 +247,55 @@ function openBabyDialog(stage){
    <span class="dialog-detail"><b>Cheveux</b>${stage.cheveux}</span>`;
  $("#babyDialog").showModal();
 }
+
+const PRO_PIN="1612";
+let proUnlocked=false;
+
+function openProPin(){
+  if(patientLocked)return;
+  const dlg=$("#proPinDialog");
+  $("#proPinInput").value="";
+  $("#proPinError").textContent="";
+  dlg?.showModal();
+  setTimeout(()=>$("#proPinInput")?.focus(),50);
+}
+
+function unlockProWithPin(pin){
+  if(pin===PRO_PIN){
+    proUnlocked=true;
+    document.body.classList.remove("pro-locked");
+    $("#proPinDialog")?.close();
+    switchToPro(true);
+    return true;
+  }
+  $("#proPinError").textContent="Code incorrect";
+  $("#proPinInput")?.select();
+  return false;
+}
+
+$("#proPinForm")?.addEventListener("submit",(e)=>{
+  e.preventDefault();
+  unlockProWithPin($("#proPinInput").value.trim());
+});
+$("#closeProPin")?.addEventListener("click",()=>$("#proPinDialog")?.close());
+
+
 function switchToPatient(){
  $("#professionalMode").hidden=true;$("#patientMode").hidden=false;
- $("#modePro").classList.remove("active");$("#modePatient").classList.add("active");
+ $("#modePro")?.classList.remove("active");$("#modePatient")?.classList.add("active");
+ document.body.classList.toggle("patient-locked",patientLocked);
  renderPatient();window.scrollTo({top:0,behavior:"smooth"});
 }
-function switchToPro(){
+function switchToPro(force=false){
+ if(patientLocked)return;
+ if(!force && !proUnlocked){openProPin();return;}
  $("#patientMode").hidden=true;$("#professionalMode").hidden=false;
- $("#modePatient").classList.remove("active");$("#modePro").classList.add("active");
+ $("#modePatient")?.classList.remove("active");$("#modePro")?.classList.add("active");
+ document.body.classList.remove("patient-locked");
  window.scrollTo({top:0,behavior:"smooth"});
 }
 $("#modePatient")?.addEventListener("click",switchToPatient);
-$("#modePro")?.addEventListener("click",switchToPro);
+$("#modePro")?.addEventListener("click",()=>switchToPro());
 $("#backToPro")?.addEventListener("click",switchToPro);
 $("#returnCalc")?.addEventListener("click",switchToPro);
 $("#fetalImageButton")?.addEventListener("click",()=>{const d=currentPregnancyData();if(d)openBabyDialog(patientStageFor(d.w))});
@@ -352,11 +390,14 @@ function initPatientLink(){
  const params=new URLSearchParams(location.search);
  let ddgValue=null;
  if(params.get("mode")==="patiente" && /^\d{4}-\d{2}-\d{2}$/.test(params.get("ddg")||"")){
+   patientLocked=true;
    ddgValue=params.get("ddg");
    savePatientDDG(ddgValue);
  }else if(params.get("mode")==="patiente"){
+   patientLocked=true;
    ddgValue=loadPatientDDG();
  }else if(!params.get("mode") && loadPatientDDG() && window.matchMedia("(display-mode: standalone)").matches){
+   patientLocked=true;
    ddgValue=loadPatientDDG();
  }
  if(ddgValue){
@@ -372,5 +413,27 @@ function initPatientLink(){
  }
 }
 initPatientLink();
+enforceProPinOnDirectOpen();
+
+/* Verrouillage strict de l'espace patiente */
+document.addEventListener("click",(e)=>{
+  if(!patientLocked)return;
+  const forbidden=e.target.closest("#modePro,#backToPro,#returnCalc,[data-target='professionalMode'],[data-mode='pro']");
+  if(forbidden){e.preventDefault();e.stopImmediatePropagation();}
+},true);
+
 
 if("serviceWorker"in navigator)navigator.serviceWorker.register("sw.js");
+
+function enforceProPinOnDirectOpen(){
+ const params=new URLSearchParams(location.search);
+ const isPatient=params.get("mode")==="patiente" || patientLocked;
+ if(isPatient)return;
+
+ // Masquer le contenu pro tant que le PIN n'est pas validé
+ $("#professionalMode").hidden=true;
+ $("#patientMode").hidden=true;
+ document.body.classList.add("pro-locked");
+ setTimeout(openProPin,100);
+}
+

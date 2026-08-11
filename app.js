@@ -87,6 +87,7 @@ calculateDDGFromTodayTerm();
 const patientStages=[
  {
   min:0,max:7,label:"6 SA",img:"assets/6sa.png",
+  sizeLabel:"≈ 5 mm",weightLabel:"≈ 0,1 g",sizeNum:0.5,
   cheveux:"La peau est encore très fine et en plein développement ; aucune pilosité n’est visible à ce stade.",
   title:"Les tout premiers développements",
   text:"La croissance est très rapide. Les premières structures du futur cerveau, du cœur et des membres commencent à se mettre en place.",
@@ -96,6 +97,7 @@ const patientStages=[
  },
  {
   min:8,max:9,label:"8 SA",img:"assets/8sa.png",
+  sizeLabel:"≈ 1,6 cm",weightLabel:"≈ 1 g",sizeNum:1.6,
   cheveux:"La peau reste très fine et poursuit sa formation ; la pilosité n’est pas encore développée.",
   title:"Les organes prennent forme",
   text:"La silhouette se précise rapidement : tête, tronc, bras et jambes deviennent de plus en plus reconnaissables.",
@@ -105,6 +107,7 @@ const patientStages=[
  },
  {
   min:10,max:11,label:"10 SA",img:"assets/10sa.png",
+  sizeLabel:"≈ 3,1 cm",weightLabel:"≈ 4 g",sizeNum:3.1,
   cheveux:"La peau poursuit sa maturation et les futurs follicules pileux se mettent progressivement en place.",
   title:"Une silhouette de plus en plus humaine",
   text:"Les traits se dessinent et les doigts et les orteils sont individualisés. La croissance reste très rapide.",
@@ -114,6 +117,7 @@ const patientStages=[
  },
  {
   min:12,max:15,label:"12 SA",img:"assets/12sa.png",
+  sizeLabel:"≈ 5,4 cm",weightLabel:"≈ 14 g",sizeNum:5.4,
   cheveux:"La peau reste fine ; le cuir chevelu se structure et les follicules pileux poursuivent leur développement.",
   title:"Fin du premier trimestre",
   text:"Le bébé bouge déjà beaucoup même si ces mouvements ne sont généralement pas encore perçus par la mère.",
@@ -123,6 +127,7 @@ const patientStages=[
  },
  {
   min:16,max:19,label:"16 SA",img:"assets/16sa.png",
+  sizeLabel:"≈ 16 cm",weightLabel:"≈ 120 g",sizeNum:16,
   cheveux:"La peau est encore fine et peu graisseuse ; le lanugo, un duvet très fin, commence progressivement à apparaître.",
   title:"Croissance et mouvements",
   text:"Le corps s’allonge et les mouvements deviennent plus coordonnés. Certaines patientes commencent à les ressentir.",
@@ -132,6 +137,7 @@ const patientStages=[
  },
  {
   min:20,max:23,label:"20 SA",img:"assets/20sa.png",
+  sizeLabel:"≈ 25 cm",weightLabel:"≈ 320 g",sizeNum:25,
   cheveux:"La peau est protégée progressivement par le vernix et le lanugo devient bien présent ; les cheveux commencent à pousser.",
   title:"Le monde extérieur devient perceptible",
   text:"Le développement moteur et sensoriel s’accélère et les mouvements sont de mieux en mieux coordonnés.",
@@ -141,6 +147,7 @@ const patientStages=[
  },
  {
   min:24,max:27,label:"24 SA",img:"assets/24sa.png",
+  sizeLabel:"≈ 30 cm",weightLabel:"≈ 600 g",sizeNum:30,
   cheveux:"La peau reste fine mais poursuit sa maturation ; vernix et lanugo la protègent, tandis que les cheveux deviennent plus visibles.",
   title:"Votre bébé réagit davantage",
   text:"La maturation neurologique et pulmonaire se poursuit. Les périodes de sommeil et d’éveil commencent à être mieux organisées.",
@@ -150,6 +157,7 @@ const patientStages=[
  },
  {
   min:28,max:31,label:"28 SA",img:"assets/28sa.png",
+  sizeLabel:"≈ 38 cm",weightLabel:"≈ 1 kg",sizeNum:38,
   cheveux:"La peau s’épaissit progressivement avec l’augmentation de la graisse sous-cutanée ; les cheveux sont visibles et le lanugo reste présent.",
   title:"Entrée dans le troisième trimestre",
   text:"La prise de poids devient importante et le cerveau poursuit une phase intense de maturation.",
@@ -159,6 +167,7 @@ const patientStages=[
  },
  {
   min:32,max:36,label:"32 SA",img:"assets/32sa.png",
+  sizeLabel:"≈ 42 cm",weightLabel:"≈ 1,7 kg",sizeNum:42,
   cheveux:"La peau devient plus lisse avec l’accumulation de graisse sous-cutanée ; les cheveux sont visibles et le lanugo commence à diminuer.",
   title:"Une maturation de plus en plus complète",
   text:"Le bébé prend du poids rapidement et se prépare progressivement à la vie après la naissance.",
@@ -168,6 +177,7 @@ const patientStages=[
  },
  {
   min:37,max:45,label:"37–41 SA",img:"assets/37sa.png",
+  sizeLabel:"≈ 48–52 cm",weightLabel:"≈ 2,9–3,5 kg",sizeNum:50,
   cheveux:"La peau est plus épaisse et plus lisse à terme ; la quantité de cheveux varie selon les bébés et le lanugo a en grande partie disparu.",
   title:"Bébé à terme",
   text:"À partir de 37 SA, la grossesse entre dans la période du terme. Le bébé poursuit surtout sa prise de poids.",
@@ -238,13 +248,17 @@ function openBabyDialog(stage){
  if(!stage)return;
  $("#dialogBabyImage").src=stage.img;
  $("#dialogStage").textContent=stage.label;
- $("#dialogTitle").textContent=stage.title;
- $("#dialogText").innerHTML=`
-   <span class="dialog-main">${stage.text}</span>
-   <span class="dialog-detail"><b>Organes</b>${stage.organes}</span>
-   <span class="dialog-detail"><b>Sensoriel</b>${stage.sensoriel}</span>
-   <span class="dialog-detail"><b>Interactions</b>${stage.interaction}</span>
-   <span class="dialog-detail"><b>Peau / cheveux</b>${stage.cheveux}</span>`;
+ $("#dialogTitle").textContent="Votre bébé aujourd’hui";
+ $("#growthSize").textContent=stage.sizeLabel;
+ $("#growthWeight").textContent=stage.weightLabel;
+ const activeIndex=patientStages.indexOf(stage),maxSize=Math.max(...patientStages.map(s=>s.sizeNum));
+ $("#growthChart").innerHTML=patientStages.map((s,i)=>{
+   const h=Math.max(8,Math.round((s.sizeNum/maxSize)*76)),active=i===activeIndex,done=i<=activeIndex;
+   return `<div class="growth-point ${active?"active":""} ${done?"done":""}">
+     <div class="growth-bar-area"><span class="growth-bar" style="height:${h}px"></span><span class="growth-dot"></span></div>
+     <b>${s.label.replace("–41","")}</b><small>${s.sizeLabel}</small>
+   </div>`;
+ }).join("");
  $("#babyDialog").showModal();
 }
 

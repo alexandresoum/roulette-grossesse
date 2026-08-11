@@ -297,3 +297,24 @@ body.pro-locked #patientMode{display:none !important}
   font-weight:800;
   background:linear-gradient(100deg,#7653bd,#c75ca6);
 }
+
+
+/* V5.7 — le clic sur l'illustration affiche uniquement la croissance */
+.growth-dialog{max-width:520px!important}
+.growth-dialog form{padding:24px 20px 18px!important;text-align:center}
+.growth-dialog .eyebrow{display:block;color:#f17cc0;font-size:27px;font-weight:900;margin-top:2px}
+.growth-dialog h3{margin:2px 0 12px!important;font-size:17px!important;color:#fff}
+.growth-dialog .growth-baby-image{width:min(72%,300px)!important;margin:6px auto 16px!important;border-radius:50%!important;box-shadow:0 0 34px rgba(226,84,174,.20)}
+.growth-numbers{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:4px 0 18px}
+.growth-stat{padding:13px 8px 11px;border:1px solid #344b78;border-radius:16px;background:linear-gradient(145deg,#0a1b39,#0a1630)}
+.growth-icon{display:grid;place-items:center;width:38px;height:38px;margin:0 auto 6px;border:1px solid #e75ba9;border-radius:50%;color:#f17cc0;font-size:20px}
+.growth-stat small{display:block;color:#aebbd1;font-size:12px}.growth-stat strong{display:block;color:#f17cc0;font-size:24px;margin:2px 0;font-weight:900}.growth-stat em{display:block;color:#7f90ae;font-size:10px;font-style:normal}
+.growth-chart-wrap{border-top:1px solid #273c63;padding-top:14px}.growth-chart-wrap h4{margin:0 0 12px;color:#fff;font-size:16px}
+.growth-chart{height:126px;display:flex;align-items:flex-end;justify-content:space-between;gap:2px;padding:0 2px 4px;overflow:hidden}
+.growth-point{flex:1;min-width:0;text-align:center;color:#70809e}.growth-bar-area{height:80px;position:relative;display:flex;align-items:flex-end;justify-content:center}
+.growth-bar{display:block;width:3px;border-radius:4px 4px 0 0;background:#31476d}.growth-dot{position:absolute;bottom:-4px;width:8px;height:8px;border-radius:50%;background:#43597d;border:2px solid #07162f}
+.growth-point.done .growth-bar{background:linear-gradient(#f17cc0,#8b5ed0)}.growth-point.done .growth-dot{background:#f17cc0}
+.growth-point.active .growth-dot{width:14px;height:14px;bottom:-7px;box-shadow:0 0 0 7px rgba(241,124,192,.13)}
+.growth-point b{display:block;margin-top:7px;font-size:9px;white-space:nowrap;color:#8e9bb2}.growth-point small{display:block;margin-top:2px;font-size:8px;white-space:nowrap;color:#657592}
+.growth-point.active b,.growth-point.active small{color:#f17cc0;font-weight:800}.growth-note{color:#8998b1!important;font-size:10px!important;line-height:1.4!important;margin:10px 8px 0!important}
+@media(max-width:430px){.growth-dialog form{padding:21px 13px 15px!important}.growth-dialog .growth-baby-image{width:66%!important}.growth-stat strong{font-size:21px}.growth-chart{height:118px}.growth-point b{font-size:8px}.growth-point small{font-size:7px}}

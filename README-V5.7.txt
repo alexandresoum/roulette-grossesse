@@ -1,0 +1,1 @@
+V5.7 : seule la fenêtre ouverte au clic sur l’illustration est modifiée : image existante, taille, poids et graphique de croissance. Aucun visuel n’a été régénéré. Le reste de la V5.6 est inchangé.

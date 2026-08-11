@@ -290,9 +290,14 @@ function openProPin(){
 function unlockProWithPin(pin){
   if(pin===PRO_PIN){
     proUnlocked=true;
-    document.body.classList.remove("pro-locked");
+    patientLocked=false;
+    document.body.classList.remove("pro-locked","patient-locked");
     $("#proPinDialog")?.close();
-    switchToPro(true);
+    $("#patientMode").hidden=true;
+    $("#professionalMode").hidden=false;
+    $("#modePatient")?.classList.remove("active");
+    $("#modePro")?.classList.add("active");
+    window.scrollTo({top:0,behavior:"smooth"});
     return true;
   }
   $("#proPinError").textContent="Code incorrect";
@@ -420,6 +425,7 @@ function initPatientLink(){
    patientLocked=true;
    ddgValue=params.get("ddg");
    savePatientDDG(ddgValue);
+    try{history.replaceState(null,"",location.pathname+location.hash)}catch{}
  }else if(params.get("mode")==="patiente"){
    patientLocked=true;
    ddgValue=loadPatientDDG();
@@ -451,7 +457,7 @@ document.addEventListener("click",(e)=>{
 
 
 
-/* Démarrage V5.7.1 : séparation stricte Pro / Patiente */
+/* Démarrage V5.7.4 : QR = Patiente ; PWA patiente = Patiente ; navigateur normal = Pro */
 (function bootApp(){
  const params=new URLSearchParams(location.search);
  const patientFromQR=params.get("mode")==="patiente";
@@ -463,24 +469,13 @@ document.addEventListener("click",(e)=>{
  }
 
  patientLocked=false;
+ proUnlocked=false;
  document.body.classList.remove("patient-locked");
+ document.body.classList.add("pro-locked");
  $("#patientMode").hidden=true;
  $("#professionalMode").hidden=true;
- document.body.classList.add("pro-locked");
  setTimeout(openProPin,80);
 })();
 
 if("serviceWorker"in navigator)navigator.serviceWorker.register("sw.js");
-
-function enforceProPinOnDirectOpen(){
- const params=new URLSearchParams(location.search);
- const isPatient=params.get("mode")==="patiente" || patientLocked;
- if(isPatient)return;
-
- // Masquer le contenu pro tant que le PIN n'est pas validé
- $("#professionalMode").hidden=true;
- $("#patientMode").hidden=true;
- document.body.classList.add("pro-locked");
- setTimeout(openProPin,100);
-}
 

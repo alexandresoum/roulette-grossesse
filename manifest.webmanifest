@@ -1,7 +1,7 @@
 {
   "name": "Roulette de grossesse",
   "short_name": "Grossesse",
-  "start_url": "./",
+  "start_url": "./?v=5.7.7",
   "display": "standalone",
   "background_color": "#061329",
   "theme_color": "#061329",

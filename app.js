@@ -470,7 +470,9 @@ document.addEventListener("click",(e)=>{
 (function bootApp(){
  const params=new URLSearchParams(location.search);
  const patientFromQR=params.get("mode")==="patiente";
- const patientStandalone=!patientFromQR && window.matchMedia("(display-mode: standalone)").matches && !!loadPatientDDG();
+ const standalone=window.matchMedia("(display-mode: standalone)").matches;
+ const mobileDevice=/iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+ const patientStandalone=!patientFromQR && standalone && mobileDevice && !!loadPatientDDG();
 
  if(patientFromQR || patientStandalone){
    initPatientLink();
@@ -480,11 +482,12 @@ document.addEventListener("click",(e)=>{
  patientLocked=false;
  proUnlocked=false;
  document.body.classList.remove("patient-locked");
+ // Sur ordinateur, y compris dans l'application épinglée, l'ouverture normale est professionnelle.
  document.body.classList.add("pro-locked");
  $("#patientMode").hidden=true;
  $("#professionalMode").hidden=true;
  setTimeout(openProPin,80);
 })();
 
-if("serviceWorker"in navigator)navigator.serviceWorker.register("sw.js?v=5.7.5",{updateViaCache:"none"});
+if("serviceWorker"in navigator)navigator.serviceWorker.register("sw.js?v=5.7.7",{updateViaCache:"none"});
 
